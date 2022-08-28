@@ -38,6 +38,14 @@ Cliente *searchClienteCPF(lClientes *list, char *cpf){
     return NULL;
 }
 
+Cliente *searchClienteID(lClientes *list, int cod){
+    Cliente *aux;
+    for(aux-list->first; aux->cod!=cod; aux=aux->next);
+    if(aux->cod==cod)
+        return aux;
+    return NULL;
+}
+
 Bebida *createBebida(int cod, char *nome, float preco, int qtEstoque, int teorAlcolico){
     Bebida *new=malloc(sizeof(Bebida));
     new->cod=cod;
