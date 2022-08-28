@@ -58,8 +58,7 @@ void printClientes(Cliente *first);
 void printBebidas(Bebida *first);
 
 void criaVenda(lClientes *firstC, lBebidas *firstB, char *cpf, int cod);
-
-void printVenda(Vendas *first);
+void nf(Bebida *bebida, Cliente *cliente, int qtd);
 
 int menu();
 
