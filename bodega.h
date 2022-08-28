@@ -47,7 +47,6 @@ bool isEmptyClientes(Cliente *list);
 Cliente *createCliente(int cod, char *nome, char *cpf, int idade, int fiado);
 Cliente *searchCliente(lClientes *first, char *cpf);
 
-
 Bebida *createBebida(int cod, char *nome, float preco, int qtEstoque, int teorAlcolico);
 Bebida *searchBebida(lBebidas *first, int cod);
 void compraBebida(lBebidas *first, int cod, int qtd);
@@ -56,10 +55,7 @@ void addCliente(lClientes *list, Cliente *new);
 void addBebida(lBebidas *list, Bebida *new);
 
 void printClientes(Cliente *first);
-// void reversePrintClientes(Cliente *last);
-
 void printBebidas(Bebida *first);
-// void reversePrintBebidas(Bebida *last);
 
 void criaVenda(lClientes *firstC, lBebidas *firstB, char *cpf, int cod);
 
