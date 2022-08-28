@@ -45,7 +45,7 @@ bool isEmptyBebidas(Bebida *list);
 bool isEmptyClientes(Cliente *list);
 
 Cliente *createCliente(int cod, char *nome, char *cpf, int idade, int fiado);
-Cliente *searchCliente(lClientes *first, char *cpf);
+Cliente *searchClienteCPF(lClientes *first, char *cpf);
 
 Bebida *createBebida(int cod, char *nome, float preco, int qtEstoque, int teorAlcolico);
 Bebida *searchBebida(lBebidas *first, int cod);
