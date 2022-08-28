@@ -33,10 +33,8 @@ Cliente *searchCliente(lClientes *list, char *cpf){
     for(aux=list->first; aux!=NULL; aux=aux->next){
         if(strcmp(aux->cpf,cpf)==0){
             return aux;
-            printf("%s", aux->cpf);
         }
     }
-    printf("Não tem na lista\n");
     return NULL;
 }
 
@@ -161,32 +159,39 @@ void printBebidas(Bebida *first){
     }
 }
 
-// lVendas *criaVenda(lClientes *clientes, lBebidas *bebidas){
-//     lVendas *new=malloc(sizeof(lVendas));
-//     lClientes *aux;
-
+void criaVenda(lClientes *clientes, lBebidas *bebidas, char *cpf, int cod){
+    Bebida *aux, *auxB;
+    Cliente *auxC;
+    int qtd;    
+    auxC=searchCliente(clientes, cpf);
+    auxB=searchBebida(bebidas, cod);
     
+    if(auxC==NULL){
+        printf("Cliente não cadastrado\n");
+    }
+    else if(auxB==NULL){
+        printf("Bebida não cadastrada\n");
+    }
+    else if(auxC->idade < 18 && auxB->teorAlcolico > 0){
+        printf("Cliente menor de idade\n");
+    }
+    printf("Quantas bebidas deseja comprar?\n"); 
+        scanf("%d", &qtd);
 
-//     for(aux=clientes->first; aux->first!=NULL; aux=aux->first->next){
-
-
-//     }
-
-//     if(clientes->first->idade<18 ){
-
-//     }
-
-//     return new;
-// }
-
-// void addVenda(lVendas *lista, Vendas *new){
-
-
-// }
+    for(aux=bebidas->first; aux->cod!=cod; aux=aux->next);
+    if(aux->qtEstoque < qtd ){
+        printf("Compra não realizada, qtd > estoque");
+    }else{
+        aux->qtEstoque-=qtd;
+        
+    }
+    return;
+}
 
 int menu(){
     char op[10];
     int op1;
+    printf("\n");
     printf("(1) Cadastrar bebida\n");
     printf("(2) Mostrar bebidas\n");
     printf("(3) Comprar bebida\n");

@@ -8,11 +8,9 @@ int main(){
 
     lBebidas *bebidas=malloc(sizeof(lBebidas));
     lClientes *clientes=malloc(sizeof(lClientes));
-    lVendas *vendas=malloc(sizeof(lVendas));
 
     clientes->first=NULL; clientes->last=NULL;
     bebidas->first=NULL; bebidas->last=NULL;
-    vendas->last=NULL;
 
     Cliente auxC;
     Bebida auxB;
@@ -52,20 +50,14 @@ int main(){
             case 4:
                 if(isEmptyClientes(clientes->first)){
                     printf("Não há nenhuma cliente cadastrado\n");
-                    continue;
-
-
+                    continue;;
                 }else if(isEmptyBebidas(bebidas->first)){
                     printf("Não há nenhuma bebida cadastrada\n");
-                    continue;
+                    continue;;
                 }
-                printf("CPF do cliente: ""999.999.999-99""\n");
-                scanf("%s", auxC.cpf);
-                searchCliente(clientes,auxC.cpf);
-
-                // searchBebida(bebidas, )
-                // criaVenda(clientes, bebidas);
-
+                printf("CPF do cliente (com pontuação): "); scanf("%s", auxC.cpf);
+                printf("Código da bebida: "); scanf("%d", &auxB.cod);
+                criaVenda(clientes, bebidas, auxC.cpf, auxB.cod);
             continue;
 
             case 5:
@@ -90,7 +82,6 @@ int main(){
         printf("Valor Inválido\n");
             continue;
         }
-        free(vendas);
     }
 
    return 0;

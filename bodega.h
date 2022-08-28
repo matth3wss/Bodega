@@ -37,15 +37,9 @@ typedef struct lCli{
 }lClientes;
 
 typedef struct vendas{
-    Cliente *cliente;
-    Bebida *bebida;
-    struct vendas *next;
+    Cliente cliente;
+    Bebida bebida;
 }Vendas;
-
-typedef struct lVen{
-    Vendas *last;
-}lVendas;
-
 
 bool isEmptyBebidas(Bebida *list);
 bool isEmptyClientes(Cliente *list);
@@ -67,8 +61,7 @@ void printClientes(Cliente *first);
 void printBebidas(Bebida *first);
 // void reversePrintBebidas(Bebida *last);
 
-lVendas *criaVenda(lClientes *firstC, lBebidas *firstB);
-void addVenda(lVendas *lista, Vendas *new);
+void criaVenda(lClientes *firstC, lBebidas *firstB, char *cpf, int cod);
 
 void printVenda(Vendas *first);
 
