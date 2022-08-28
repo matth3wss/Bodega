@@ -28,7 +28,7 @@ Cliente *createCliente(int cod, char *nome, char *cpf, int idade, int fiado){
     return new;
 }
 
-Cliente *searchCliente(lClientes *list, char *cpf){
+Cliente *searchClienteCPF(lClientes *list, char *cpf){
     Cliente *aux;
     for(aux=list->first; aux!=NULL; aux=aux->next){
         if(strcmp(aux->cpf,cpf)==0){
@@ -76,12 +76,17 @@ void compraBebida(lBebidas *list, int cod, int qtd){
 // Função adiciona na lista em ordem crescente das idades dos clientes
 void addCliente(lClientes *list, Cliente *new){
     Cliente *inicio=list->first, *fim=list->last, *aux;
+
     //Se a lista estiver vazia, "first" e "last" recebem "new"
     if(isEmptyClientes(list->first)){
         list->first=new;
         list->last=new;
         return;
-
+    }
+        // Verifica se o cpf já foi cadastrado
+    else if(searchClienteCPF(list,new->cpf)!=NULL){
+        printf("CPF já cadastrado\n");
+        return;
     // Se "new" for menor que "first" ou igual a "first" vai adicionar no inicio
     }else if(new->idade <= inicio->idade){
         new->next=list->first;
@@ -163,7 +168,7 @@ void criaVenda(lClientes *clientes, lBebidas *bebidas, char *cpf, int cod){
     Bebida *aux, *auxB;
     Cliente *auxC;
     int qtd;    
-    auxC=searchCliente(clientes, cpf);
+    auxC=searchClienteCPF(clientes, cpf);
     auxB=searchBebida(bebidas, cod);
     
     if(auxC==NULL){
