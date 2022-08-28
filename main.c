@@ -22,12 +22,12 @@ int main(){
 
         switch (op){
             case 1:
-            // printf("Código da bebida: "); scanf("%d", &auxB.cod);
+            // printf("Código da bebida: "); scanf("%d", &auxB.id);
             // printf("Nome da bebida: "); scanf("%s", auxB.nome);
             // printf("Valor da bebida: "); scanf("%f", &auxB.preco);
             // printf("Qtd Estoque: "); scanf("%d", &auxB.qtEstoque);
             // printf("Teor Alcoólico: "); scanf("%d", &auxB.teorAlcolico);
-            // addBebida(bebidas, createBebida(auxB.cod, auxB.nome, auxB.preco, auxB.qtEstoque, auxB.teorAlcolico));
+            // addBebida(bebidas, createBebida(auxB.id, auxB.nome, auxB.preco, auxB.qtEstoque, auxB.teorAlcolico));
 
             addBebida(bebidas, createBebida(49, "Campari", 92.5, 3, 10));
             addBebida(bebidas, createBebida(47, "Raiska", 100.28, 10, 100));
@@ -41,9 +41,9 @@ int main(){
                 if(isEmptyBebidas(bebidas->first)){
                     printf("Nenhuma bebida cadastrada\n");
                 }else{
-                    printf("Código da bebida: "); scanf("%d", &auxB.cod);
+                    printf("Código da bebida: "); scanf("%d", &auxB.id);
                     printf("Qtd comprada: "); scanf("%d", &auxB.qtEstoque);
-                    compraBebida(bebidas, auxB.cod, auxB.qtEstoque);
+                    compraBebida(bebidas, auxB.id, auxB.qtEstoque);
                 }
                 continue;
             
@@ -56,17 +56,17 @@ int main(){
                     continue;;
                 }
                 printf("CPF do cliente (com pontuação): "); scanf("%s", auxC.cpf);
-                printf("Código da bebida: "); scanf("%d", &auxB.cod);
-                criaVenda(clientes, bebidas, auxC.cpf, auxB.cod);
+                printf("Código da bebida: "); scanf("%d", &auxB.id);
+                criaVenda(clientes, bebidas, auxC.cpf, auxB.id);
             continue;
 
             case 5:
-            // printf("Código do cliente: "); scanf("%d", &auxC.cod);
+            // printf("Código do cliente: "); scanf("%d", &auxC.id);
             // printf("Nome do cliente: "); scanf("%s", auxC.nome);
             // printf("CPF do cliente (com pontuação): "); scanf("%s", auxC.cpf);
             // printf("Idade: "); scanf("%d", &auxC.idade);
             // printf("Posso vender fiado?\n(1)SIM\n(0)NÃO\n"); scanf("%d", &auxC.fiado);
-            // addCliente(clientes, createCliente(auxC.cod, auxC.nome, auxC.cpf, auxC.idade, auxC.fiado));
+            // addCliente(clientes, createCliente(auxC.id, auxC.nome, auxC.cpf, auxC.idade, auxC.fiado));
             
             addCliente(clientes, createCliente(1, "Matheus Henrique", "295.309.451-24", 75, 0));
             addCliente(clientes, createCliente(5, "Eduardo Oliveira", "295.309.451-24", 75, 0));

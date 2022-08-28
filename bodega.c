@@ -16,9 +16,9 @@ bool isEmptyClientes(Cliente *list){
     return false;
 }
 
-Cliente *createCliente(int cod, char *nome, char *cpf, int idade, int fiado){
+Cliente *createCliente(int id, char *nome, char *cpf, int idade, int fiado){
     Cliente *new=malloc(sizeof(Cliente));
-    new->cod=cod;
+    new->id=id;
     snprintf(new->nome, sizeof(new->nome), "%s", nome);
     snprintf(new->cpf, sizeof(new->cpf), "%s", cpf);
     new->idade=idade;
@@ -38,17 +38,17 @@ Cliente *searchClienteCPF(lClientes *list, char *cpf){
     return NULL;
 }
 
-Cliente *searchClienteID(lClientes *list, int cod){
+Cliente *searchClienteID(lClientes *list, int id){
     Cliente *aux;
-    for(aux-list->first; aux->cod!=cod; aux=aux->next);
-    if(aux->cod==cod)
+    for(aux-list->first; aux->id!=id; aux=aux->next);
+    if(aux->id==id)
         return aux;
     return NULL;
 }
 
-Bebida *createBebida(int cod, char *nome, float preco, int qtEstoque, int teorAlcolico){
+Bebida *createBebida(int id, char *nome, float preco, int qtEstoque, int teorAlcolico){
     Bebida *new=malloc(sizeof(Bebida));
-    new->cod=cod;
+    new->id=id;
     snprintf(new->nome, sizeof(new->nome), "%s", nome);
     new->preco=preco;
     new->qtEstoque=qtEstoque;
@@ -58,24 +58,24 @@ Bebida *createBebida(int cod, char *nome, float preco, int qtEstoque, int teorAl
     return new;
 }
 
-Bebida *searchBebida(lBebidas *list, int cod){
+Bebida *searchBebida(lBebidas *list, int id){
     Bebida *aux;
     if(isEmptyBebidas(list->first)){
         return NULL;
     }
     for(aux=list->first; aux!=NULL; aux=aux->next){
-        if(aux->cod == cod)
+        if(aux->id == id)
             return aux;
     }
     return NULL;
 }
 
-void compraBebida(lBebidas *list, int cod, int qtd){
+void compraBebida(lBebidas *list, int id, int qtd){
     Bebida *aux;
-    if(searchBebida(list, cod)==NULL){
+    if(searchBebida(list, id)==NULL){
         printf("Código inexistente\n");
     }else{
-        for(aux=list->first; aux->cod!=cod; aux=aux->next);
+        for(aux=list->first; aux->id!=id; aux=aux->next);
         aux->qtEstoque+=qtd;  
     }
     return;
@@ -95,6 +95,8 @@ void addCliente(lClientes *list, Cliente *new){
     else if(searchClienteCPF(list,new->cpf)!=NULL){
         printf("CPF já cadastrado\n");
         return;
+    }else if(searchClienteID(list,new->id)!=NULL){
+        printf("Código já cadastrado\n");
     // Se "new" for menor que "first" ou igual a "first" vai adicionar no inicio
     }else if(new->idade <= inicio->idade){
         new->next=list->first;
@@ -130,7 +132,7 @@ void addBebida(lBebidas *list, Bebida *new){
     if(isEmptyBebidas(list->first)){
         list->first=new;
         list->last=new;
-    }else if(searchBebida(list, new->cod)==NULL){
+    }else if(searchBebida(list, new->id)==NULL){
         list->last->next=new;
         list->last->next->prev=list->last;
         list->last=new;
@@ -148,7 +150,7 @@ void printClientes(Cliente *first){
         printf("| Código do Cliente | Nome do Cliente | CPF do Cliente | Idade | Fiado |\n");
         printf("|======================================================================|\n");
         for(aux = first; aux!= NULL; aux=aux->next){
-            printf("|%-19d|%-17s|%-16s|%-7d|%-7d|", aux->cod, aux->nome, aux->cpf, aux->idade, aux->fiado);
+            printf("|%-19d|%-17s|%-16s|%-7d|%-7d|", aux->id, aux->nome, aux->cpf, aux->idade, aux->fiado);
             printf("\n");
         }
         printf("|======================================================================|\n");
@@ -165,19 +167,19 @@ void printBebidas(Bebida *first){
         printf("| Código da Bebida | Nome da Bebida | Preço | Qtd Estoque | Teor Alcoólico |\n");
         printf("|==========================================================================|\n");
         for(aux = first; aux!= NULL; aux=aux->next){
-            printf("|%-18d|%-16s|%-7.2f|%-13d|%-16d|", aux->cod, aux->nome, aux->preco, aux->qtEstoque, aux->teorAlcolico);
+            printf("|%-18d|%-16s|%-7.2f|%-13d|%-16d|", aux->id, aux->nome, aux->preco, aux->qtEstoque, aux->teorAlcolico);
             printf("\n");
         }
         printf("|==========================================================================|\n");
     }
 }
 
-void criaVenda(lClientes *clientes, lBebidas *bebidas, char *cpf, int cod){
+void criaVenda(lClientes *clientes, lBebidas *bebidas, char *cpf, int id){
     Bebida *aux, *auxB;
     Cliente *auxC;
     int qtd;    
     auxC=searchClienteCPF(clientes, cpf);
-    auxB=searchBebida(bebidas, cod);
+    auxB=searchBebida(bebidas, id);
     
     if(auxC==NULL){
         printf("Cliente não cadastrado\n");
@@ -193,7 +195,7 @@ void criaVenda(lClientes *clientes, lBebidas *bebidas, char *cpf, int cod){
     printf("Quantas bebidas deseja comprar?\n"); 
         scanf("%d", &qtd);
 
-    for(aux=bebidas->first; aux->cod!=cod; aux=aux->next);
+    for(aux=bebidas->first; aux->id!=id; aux=aux->next);
     if(aux->qtEstoque < qtd ){
         printf("Estoque insuficiente\n");
     }else{
@@ -213,7 +215,7 @@ void nf(Bebida *bebida, Cliente *cliente, int qtd){
     printf("|=========================================================|\n");
     printf("| Código da Bebida | Nome da Bebida | Preço | Qtd | Total |\n");
     printf("|=========================================================|\n");
-    printf("|%-18d|%-16s|%-7.2f|%-5d|%-7.2f|\n", auxB->cod, auxB->nome, auxB->preco, qtd, auxB->preco*qtd);
+    printf("|%-18d|%-16s|%-7.2f|%-5d|%-7.2f|\n", auxB->id, auxB->nome, auxB->preco, qtd, auxB->preco*qtd);
     printf("|=========================================================|\n");
     printf("\n");
 }
