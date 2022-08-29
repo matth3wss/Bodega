@@ -47,9 +47,10 @@ Cliente *searchClienteID(lClientes *list, int id){
     return NULL;
 }
 
-Bebida *createBebida(int id, char *nome, float preco, int qtEstoque, int teorAlcolico){
+Bebida *createBebida(int id, char *nome, int ml, float preco, int qtEstoque, int teorAlcolico){
     Bebida *new=malloc(sizeof(Bebida));
     new->id=id;
+    new->ml=ml;
     snprintf(new->nome, sizeof(new->nome), "%s", nome);
     new->preco=preco;
     new->qtEstoque=qtEstoque;
@@ -75,6 +76,8 @@ void compraBebida(lBebidas *list, int id, int qtd){
     Bebida *aux;
     if(searchBebida(list, id)==NULL){
         printf("Código inexistente\n");
+    }else if(qtd<=0){
+        printf("Erro, quantidade inferior ou igual a 0\n");
     }else{
         for(aux=list->first; aux->id!=id; aux=aux->next);
         aux->qtEstoque+=qtd;  
@@ -166,14 +169,14 @@ void printBebidas(Bebida *first){
         printf("Nenhuma bebida cadastrada!\n");
         return;
     }else{
-        printf("|==========================================================================|\n");
-        printf("| Código da Bebida | Nome da Bebida | Preço | Qtd Estoque | Teor Alcoólico |\n");
-        printf("|==========================================================================|\n");
+        printf("|=========================================================================================|\n");
+        printf("| Código da Bebida | Nome da Bebida | Peso Líquido | Preço | Qtd Estoque | Teor Alcoólico |\n");
+        printf("|=========================================================================================|\n");
         for(aux = first; aux!= NULL; aux=aux->next){
-            printf("|%-18d|%-16s|%-7.2f|%-13d|%-16d|", aux->id, aux->nome, aux->preco, aux->qtEstoque, aux->teorAlcolico);
+            printf("|%-18d|%-16s|%-14d|%-7.2f|%-13d|%-16d|", aux->id, aux->nome, aux->ml, aux->preco, aux->qtEstoque, aux->teorAlcolico);
             printf("\n");
         }
-        printf("|==========================================================================|\n");
+        printf("|=========================================================================================|\n");
     }
 }
 
@@ -222,6 +225,21 @@ void nf(Bebida *bebida, Cliente *cliente, int qtd){
     printf("|=========================================================|\n");
     printf("\n");
 }
+
+int clearB(Bebida *first){
+    if(first == NULL) return 0;
+    int x = clearB(first->next)+1;
+    free(first);
+    return x;
+}
+
+int clearC(Cliente *first){
+    if(first == NULL) return 0;
+    int x = clearC(first->next)+1;
+    free(first);
+    return x;
+}
+
 
 int menu(){
     char op[10];

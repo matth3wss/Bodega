@@ -24,13 +24,14 @@ int main(){
             case 1:
             // printf("Código da bebida: "); scanf("%d", &auxB.id);
             // printf("Nome da bebida: "); scanf("%s", auxB.nome);
+            // print("Peso liquido em ml"); scanf("%d", auxB.ml);
             // printf("Valor da bebida: "); scanf("%f", &auxB.preco);
             // printf("Qtd Estoque: "); scanf("%d", &auxB.qtEstoque);
             // printf("Teor Alcoólico: "); scanf("%d", &auxB.teorAlcolico);
-            // addBebida(bebidas, createBebida(auxB.id, auxB.nome, auxB.preco, auxB.qtEstoque, auxB.teorAlcolico));
+            // addBebida(bebidas, createBebida(auxB.id, auxB.nome, auxB.ml, auxB.preco, auxB.qtEstoque, auxB.teorAlcolico));
 
-            addBebida(bebidas, createBebida(49, "Campari", 92.5, 3, 10));
-            addBebida(bebidas, createBebida(47, "Raiska", 100.28, 10, 100));
+            addBebida(bebidas, createBebida(47, "Campari", 150, 92.5, 3, 10));
+            addBebida(bebidas, createBebida(49, "Raiska", 150, 100.28, 10, 100));
             continue;
 
             case 2:
@@ -73,20 +74,19 @@ int main(){
             // addCliente(clientes, createCliente(auxC.id, auxC.nome, auxC.cpf, auxC.idade, auxC.fiado));
             
             addCliente(clientes, createCliente(1, "Matheus Henrique", "295.309.451-24", 75, 0));
-            addCliente(clientes, createCliente(5, "Eduardo Oliveira", "295.309.451-24", 75, 0));
+            addCliente(clientes, createCliente(5, "Eduardo Oliveira", "295.309.451-27", 75, 0));
             addCliente(clientes, createCliente(23, "Emilly Lanzetta", "212.298.621-29", 75, 1));
-            addCliente(clientes, createCliente(23, "Jose Augusto", "901.868.681-62", 304, 1));
+            addCliente(clientes, createCliente(27, "Jose Augusto", "901.868.681-62", 304, 1));
             continue;
 
             case 6:
             printClientes(clientes->first);
             continue;
-
         case 0:
         printf("Valor Inválido\n");
             continue;
         }
     }
-
-   return 0;
+    printf("Foram liberados: %d elementos\n", (clearC(clientes->first)+clearB(bebidas->first)));
+return 0;
 }

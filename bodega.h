@@ -9,6 +9,7 @@ typedef struct empresa{
 typedef struct bebida{
     int id;
     char nome[40];
+    int ml;
     float preco;
     int qtEstoque;
     int teorAlcolico;
@@ -48,7 +49,7 @@ Cliente *createCliente(int id, char *nome, char *cpf, int idade, int fiado);
 Cliente *searchClienteCPF(lClientes *first, char *cpf);
 Cliente *searchClienteID(lClientes *list, int id);
 
-Bebida *createBebida(int id, char *nome, float preco, int qtEstoque, int teorAlcolico);
+Bebida *createBebida(int id, char *nome, int ml, float preco, int qtEstoque, int teorAlcolico);
 Bebida *searchBebida(lBebidas *first, int id);
 void compraBebida(lBebidas *first, int id, int qtd);
 
@@ -60,6 +61,9 @@ void printBebidas(Bebida *first);
 
 void criaVenda(lClientes *firstC, lBebidas *firstB, char *cpf, int id);
 void nf(Bebida *bebida, Cliente *cliente, int qtd);
+
+int clearB(Bebida *first);
+int clearC(Cliente *first);
 
 int menu();
 
