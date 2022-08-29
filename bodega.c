@@ -40,9 +40,10 @@ Cliente *searchClienteCPF(lClientes *list, char *cpf){
 
 Cliente *searchClienteID(lClientes *list, int id){
     Cliente *aux;
-    for(aux-list->first; aux->id!=id; aux=aux->next);
-    if(aux->id==id)
-        return aux;
+    for(aux=list->first; aux!=NULL; aux=aux->next){
+        if(aux->id==id)
+            return aux;
+    }
     return NULL;
 }
 
@@ -91,12 +92,14 @@ void addCliente(lClientes *list, Cliente *new){
         list->last=new;
         return;
     }
-        // Verifica se o cpf já foi cadastrado
+    // Verifica se o cpf já foi cadastrado
     else if(searchClienteCPF(list,new->cpf)!=NULL){
         printf("CPF já cadastrado\n");
         return;
+    // Verifica se o código ja foi cadastrado
     }else if(searchClienteID(list,new->id)!=NULL){
         printf("Código já cadastrado\n");
+        return;
     // Se "new" for menor que "first" ou igual a "first" vai adicionar no inicio
     }else if(new->idade <= inicio->idade){
         new->next=list->first;

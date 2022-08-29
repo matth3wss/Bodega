@@ -71,7 +71,7 @@ int main(){
             addCliente(clientes, createCliente(1, "Matheus Henrique", "295.309.451-24", 75, 0));
             addCliente(clientes, createCliente(5, "Eduardo Oliveira", "295.309.451-24", 75, 0));
             addCliente(clientes, createCliente(23, "Emilly Lanzetta", "212.298.621-29", 75, 1));
-            addCliente(clientes, createCliente(16, "Jose Augusto", "901.868.681-62", 304, 1));
+            addCliente(clientes, createCliente(23, "Jose Augusto", "901.868.681-62", 304, 1));
             continue;
 
             case 6:
