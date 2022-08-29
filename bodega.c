@@ -147,7 +147,7 @@ void addBebida(lBebidas *list, Bebida *new){
 void printClientes(Cliente *first){
     Cliente *aux;
     if(isEmptyClientes(first)){
-        printf("Lista Vazia!\n");
+        printf("Nenhum cliente cadastrado!\n");
     }else{
         printf("|======================================================================|\n");
         printf("| Código do Cliente | Nome do Cliente | CPF do Cliente | Idade | Fiado |\n");
@@ -163,7 +163,7 @@ void printClientes(Cliente *first){
 void printBebidas(Bebida *first){
     Bebida *aux;
     if(isEmptyBebidas(first)){
-        printf("Lista Vazia!\n");
+        printf("Nenhuma bebida cadastrada!\n");
         return;
     }else{
         printf("|==========================================================================|\n");

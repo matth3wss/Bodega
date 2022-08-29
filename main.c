@@ -48,7 +48,11 @@ int main(){
                 continue;
             
             case 4:
-                if(isEmptyClientes(clientes->first)){
+                if(isEmptyClientes(clientes->first) && isEmptyBebidas(bebidas->first)){
+                    printf("Nenhuma bebida ou cliente cadastrado\n");
+                    continue;
+                }
+                else if(isEmptyClientes(clientes->first)){
                     printf("Não há nenhuma cliente cadastrado\n");
                     continue;;
                 }else if(isEmptyBebidas(bebidas->first)){
