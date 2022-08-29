@@ -24,7 +24,7 @@ int main(){
             case 1:
             printf("Código da bebida: "); scanf("%d", &auxB.id);
             printf("Nome da bebida: "); scanf("%s", auxB.nome);
-            print("Peso liquido em ml"); scanf("%d", auxB.ml);
+            printf("Peso liquido em ml: "); scanf("%d", &auxB.ml);
             printf("Valor da bebida: "); scanf("%f", &auxB.preco);
             printf("Qtd Estoque: "); scanf("%d", &auxB.qtEstoque);
             printf("Teor Alcoólico: "); scanf("%d", &auxB.teorAlcolico);
@@ -65,7 +65,7 @@ int main(){
             case 5:
             printf("Código do cliente: "); scanf("%d", &auxC.id);
             printf("Nome do cliente: "); scanf("%s", auxC.nome);
-            printf("CPF do cliente (com pontuação): "); scanf("%s", auxC.cpf);
+            printf("CPF do cliente (sem pontuação): "); scanf("%s", auxC.cpf);
             printf("Idade: "); scanf("%d", &auxC.idade);
             printf("Posso vender fiado?\n(1)SIM\n(0)NÃO\n"); scanf("%d", &auxC.fiado);
             addCliente(clientes, createCliente(auxC.id, auxC.nome, auxC.cpf, auxC.idade, auxC.fiado));

@@ -3,7 +3,7 @@
 
 typedef struct empresa{
     char nome[40];
-    char cnpj[14];
+    char cnpj[11];
 }Empresa;
 
 typedef struct bebida{
