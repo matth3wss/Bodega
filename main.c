@@ -74,7 +74,7 @@ int main(){
             case 6:
             printClientes(clientes->first);
             continue;
-        case 0:
+        default:
         printf("Valor Inválido\n");
             continue;
         }
