@@ -89,6 +89,11 @@ void compraBebida(lBebidas *list, int id, int qtd){
 void addCliente(lClientes *list, Cliente *new){
     Cliente *inicio=list->first, *fim=list->last, *aux;
 
+    if(new->id<=0 || new->idade<=0){
+        printf("Valores NEGATIVOS ou iguais a 0 para os campos de Código ou Idade.\n");
+        return;
+    }
+
     //Se a lista estiver vazia, "first" e "last" recebem "new"
     if(isEmptyClientes(list->first)){
         list->first=new;
@@ -135,14 +140,25 @@ void addCliente(lClientes *list, Cliente *new){
 
 void addBebida(lBebidas *list, Bebida *new){
 
+    if (new->id<=0 || new->ml<=0 || new->qtEstoque<=0 || new->preco<=0){
+        printf("Valores NEGATIVOS ou iguais a 0 para os campos de bebida\n");
+        return;
+    }
+    else if(new->teorAlcolico<0) {
+        printf("Valor para teor alcoólico inválido\n");
+        return;
+    }
+
     if(isEmptyBebidas(list->first)){
         list->first=new;
         list->last=new;
-    }else if(searchBebida(list, new->id)==NULL){
+    }
+    else if(searchBebida(list, new->id)==NULL){
         list->last->next=new;
         list->last->next->prev=list->last;
         list->last=new;
-    }else{
+    }
+    else{
         printf("Código já cadastrado\n");
     }
 }
@@ -200,6 +216,10 @@ void criaVenda(lClientes *clientes, lBebidas *bebidas, char *cpf, int id){
     }
     printf("Quantas bebidas deseja comprar?\n"); 
         scanf("%d", &qtd);
+    if(qtd<=0){
+        printf("Quantidade Negativa ou igual a 0 na compra.\n");
+        return;
+    }
 
     for(aux=bebidas->first; aux->id!=id; aux=aux->next);
     if(aux->qtEstoque < qtd ){

@@ -57,7 +57,7 @@ int main(){
                     printf("Não há nenhuma bebida cadastrada\n");
                     continue;;
                 }
-                printf("CPF do cliente (com pontuação): "); scanf("%s", auxC.cpf);
+                printf("CPF do cliente (sem pontuação): "); scanf("%s", auxC.cpf);
                 printf("Código da bebida: "); scanf("%d", &auxB.id);
                 criaVenda(clientes, bebidas, auxC.cpf, auxB.id);
             continue;
